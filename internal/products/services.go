@@ -14,10 +14,10 @@ type svc struct {
 	repo repo.Querier
 }
 
-func NewService() Service {
-	return &svc{}
+func NewService(repo repo.Querier) Service {
+	return &svc{repo: repo}
 }
 
-func (s *svc) ListProducts(ctx context.Context) error {
-	products, err := s.repo.ListProducts(ctx)
+func (s *svc) ListProducts(ctx context.Context) ([]repo.Product, error) {
+	return s.repo.ListProducts(ctx)
 }
